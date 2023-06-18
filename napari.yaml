@@ -1,0 +1,47 @@
+name: data-visual
+display_name: PRAM_read
+contributions:
+  commands:
+    - id: data-visual.get_img_reader
+      python_name: data_visual._reader:napari_get_reader_dir
+      title: Open PRAM annotation in json files
+    - id: data-visual.get_reader
+      python_name: data_visual._reader:napari_get_reader
+      title: Open data with PRAM_read
+    - id: data-visual.write_multiple
+      python_name: data_visual._writer:write_multiple
+      title: Save multi-layer data with PRAM_read
+    - id: data-visual.write_single_image
+      python_name: data_visual._writer:write_single_image
+      title: Save image data with PRAM_read
+    - id: data-visual.make_qwidget
+      python_name: data_visual._widget:ExampleQWidget
+      title: Make example QWidget
+    - id: data-visual.make_magic_widget
+      python_name: data_visual._widget:get_better_contrast
+      title: Make example magic widget
+    - id: data-visual.make_func_widget
+      python_name: data_visual._widget:example_function_widget
+      title: Make example function widget
+  readers:
+    - command: data-visual.get_img_reader
+      accepts_directories: true
+      filename_patterns: []
+    - command: data-visual.get_reader
+      accepts_directories: false
+      filename_patterns: ['*.json']
+  writers:
+    - command: data-visual.write_multiple
+      layer_types: ['image*','labels*']
+      filename_extensions: []
+    - command: data-visual.write_single_image
+      layer_types: ['image']
+      filename_extensions: ['.npy']
+  widgets:
+    - command: data-visual.make_qwidget
+      display_name: Example QWidget
+    - command: data-visual.make_magic_widget
+      display_name: Example Magic Widget
+    - command: data-visual.make_func_widget
+      autogenerate: true
+      display_name: Example Function Widget
